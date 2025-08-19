@@ -84,3 +84,42 @@ Correct way to check: Number.isNaN(x).
 - Initially, x = [1,2,3] → array of length 3.
 - When you set x.length = 0, JavaScript mutates the array in place and removes all its elements.
 - Printing x now shows [] (an empty array).
+
+## 📌 Question 11
+
+- Arrays ([ ]) and objects ({ }) are reference types in JavaScript.
+- Comparison with == or === checks reference (memory address), not content.
+- [1] == [1] → two separate arrays, different references → false.
+- { } == { } → two separate objects, different references → false.
+- Only if two variables point to the same object/array in memory, comparison is true.
+
+## 📌 Question 12
+
+- == → loose equality → allows type coercion (implicit conversion).
+- "10" (string) is converted to 10 (number) before comparison.
+- After conversion: 10 == 10 → true.
+- === → strict equality → no type coercion.
+- Compares both value and type.
+- "10" (string) vs 10 (number) → types differ → false.
+
+## 📌 Question 13
+
+- In JavaScript, strings are immutable → once created, their characters cannot be changed.
+- Accessing a string with [index] works (like a[0]) because strings are array-like, but they’re not actual arrays.
+- When you try a[0] = "H", JavaScript does not throw an error, but it simply ignores the assignment.
+- That’s why the string remains "hello" instead of "Hello".
+- If you want to change a character in a string, you need to create a new string (e.g., "H" + a.slice(1) → "Hello").
+
+## 📌 Question 14
+
+- 1 < 2 < 3: 1 < 2 → true → true coerces to 1 → 1 < 3 → true → result true
+- 3 > 2 > 1: 3 > 2 → true → true coerces to 1 → 1 > 1 → false → result false
+- Reason: relational comparisons evaluate left-to-right; the second comparison coerces booleans to numbers (true → 1, false → 0)
+
+## 📌 Question 15
+
+- Initially arr = [1, 2, 3] → length is 3.
+- Setting arr.length = 5 increases the array’s length property to 5.
+- JavaScript does not auto-fill with undefined; instead it creates holes (empty slots).
+- Final array becomes [1, 2, 3, <2 empty items>].
+- Those “empty items” are not real values, they’re just uninitialized holes, but they still count toward the length.
