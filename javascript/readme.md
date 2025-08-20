@@ -137,3 +137,23 @@ Correct way to check: Number.isNaN(x).
 - let b = a; means both a and b point to the same array in memory.
 - b.push(4); changes that single array.
 - So console.log(a); shows [1, 2, 3, 4].
+
+## 📌 Question 18
+
+- [] == false → true because in loose equality [] is converted to a primitive: [].toString() → "", then "" becomes 0, and false also becomes 0, so 0 == 0 → true.
+- ![] → false because [] is an object, and all objects are truthy in JavaScript, even if they are empty. Negating a truthy value gives false.
+- So: comparing with == forces type conversion, but ![] checks truthiness directly → that’s why results look opposite.
+
+## 📌 Question 19
+
+- "" == 0 → true because with loose equality, "" is converted to a number → Number("") = 0, so 0 == 0.
+- "" === 0 → false because strict equality doesn’t do type conversion → one is string, other is number → different types.
+
+## 📌 Question 20
+
+- "b" + "a" → "ba"
+- +"a" → here the unary plus (+) tries to convert "a" into a number.
+- "a" is not a valid number → gives NaN.
+- So now it becomes: "ba" + NaN + "a"
+- "ba" + NaN → "baNaN"
+- "baNaN" + "a" → "baNaNa"
