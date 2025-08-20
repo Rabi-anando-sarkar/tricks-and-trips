@@ -1,5 +1,5 @@
-// Question 9
-// What is the result?
+// Question 11
+// What will this print?
 
 console.log([1] == [1]);
 console.log({} == {});
