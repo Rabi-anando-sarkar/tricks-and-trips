@@ -123,3 +123,17 @@ Correct way to check: Number.isNaN(x).
 - JavaScript does not auto-fill with undefined; instead it creates holes (empty slots).
 - Final array becomes [1, 2, 3, <2 empty items>].
 - Those “empty items” are not real values, they’re just uninitialized holes, but they still count toward the length.
+
+## 📌 Question 16
+
+- In JavaScript, typeof function(){} → "function" because functions have a special subtype and typeof explicitly returns "function" for them.
+- Classes in JavaScript are essentially special functions (constructor functions with a prototype).
+- That’s why typeof class {} → "function", not "object".
+- Both functions and classes are technically objects under the hood, but typeof has this special case for functions (and by extension, classes).
+
+## 📌 Question 17
+
+- arrays (and objects) are stored by reference.
+- let b = a; means both a and b point to the same array in memory.
+- b.push(4); changes that single array.
+- So console.log(a); shows [1, 2, 3, 4].
