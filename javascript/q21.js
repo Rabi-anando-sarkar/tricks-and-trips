@@ -1,0 +1,6 @@
+// Question 21
+// What happens here?
+
+console.log([...[1,2,3], ...[4,5]]);
+
+//? [ 1, 2, 3, 4, 5 ]
