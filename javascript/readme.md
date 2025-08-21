@@ -157,3 +157,126 @@ Correct way to check: Number.isNaN(x).
 - So now it becomes: "ba" + NaN + "a"
 - "ba" + NaN → "baNaN"
 - "baNaN" + "a" → "baNaNa"
+
+## 📌 Question 21
+
+- The spread operator (...) takes out (spreads) all the elements of an array.
+- ...[1,2,3] → becomes 1, 2, 3
+- ...[4,5] → becomes 4, 5
+- Putting them together inside [] gives: [1, 2, 3, 4, 5].
+- Basically, spread removes the brackets of the array and places the items individually.
+
+## 📌 Question 22
+
+- typeof is coarse: arrays are objects → typeof arr returns "object".
+- Only functions get the special "function" from typeof; arrays don’t.
+- Array.isArray(arr) is a specific check that inspects the value’s internal array-ness → returns true for array objects.
+
+## 📌 Question 23
+
+- When comparing different types with ==, type coercion happens.
+- An array ([1,2,3]) is an object → it gets converted to a primitive.
+- For arrays, .toString() is called → gives "1,2,3".
+- "1,2,3" == "1,2,3" → evaluates to true.
+
+## 📌 Question 24
+
+- In JavaScript, empty slots (called holes) are created when you write [ , , , ].
+- Each comma (except the last one) increases the length by 1.
+- [ , , , ] → 3 commas → length = 3.
+- Length is not based on number of elements, but on the highest index + 1.
+
+## 📌 Question 25
+
+- ! → negates the truthiness of a value.
+- !! → converts any value to its boolean equivalent.
+- Non-empty string ("false") → truthy → !!"false" → true.
+- Empty string ("") → falsy → !!"" → false.
+
+## 📌 Question 26
+
+- The unary + converts a value into a number
+- "Infinity" as a string is recognized as a valid numeric literal
+- Converting "Infinity" with + results in the numeric value Infinity
+- Number() also converts values into numbers
+- "Infinity" passed to Number() is interpreted as the numeric literal Infinity
+- Both +"Infinity" and Number("Infinity") evaluate to Infinity
+
+## 📌 Question 27
+
+- Math.max() with no arguments returns -Infinity because it assumes no maximum exists, so it defaults to the lowest possible value.
+- Math.min() with no arguments returns Infinity because it assumes no minimum exists, so it defaults to the highest possible value.
+- So Math.max() → -Infinity and Math.min() → Infinity.
+- When comparing -Infinity < Infinity, the result is true.
+
+## 📌 Question 28
+
+- In JavaScript, arrays are objects, and objects are compared by reference, not by value.
+- [1, 2, 3] == [1, 2, 3] creates two separate array objects in memory.
+- Even though their contents look identical, each array has a different reference (different memory address).
+- When == compares them, it checks if both sides point to the same object reference, not if their values match.
+- Since these are two different references, the comparison evaluates to false.
+
+## 📌 Question 29
+
+- The == operator does type coercion before comparing.
+- 0 is a number, "" (empty string) and [] (empty array) are non-number types → so conversion happens.
+- Step by step:
+- [] → converts to "" (empty string).
+- "" → converts to 0 when compared with a number.
+- 0 == [] → 0 == "" → 0 == 0 → true
+- 0 == "" → 0 == 0 → true
+- "" == [] → "" == "" → true
+
+## 📌 Question 30
+
+- In JavaScript, objects and arrays are stored by reference, not by value.
+- let copy = obj; → copy now points to the same memory location as obj.
+- Updating copy.a = 2; changes the property in that shared object.
+- So obj.a also reflects the update → 2.
+
+## 📌 Question 31
+
+- In JavaScript, array length = highest index + 1.
+- Initially: arr = [10, 20, 30] → length = 3.
+- Then: arr[10] = 50;
+- This directly assigns a value at index 10.
+- Indexing starts from 0, so index 10 means the 11th position.
+- JavaScript automatically fills the missing slots (index 3 to 9) with empty (a.k.a. sparse array).
+- Therefore, new length = 10 + 1 = 11.
+
+## 📌 Question 32
+
+- In older JavaScript (before ES5), a leading 0 sometimes made numbers get parsed as octal (base 8).
+- But in modern JavaScript (ES5+), this behavior was removed.
+- Now "08" is simply read as decimal 8.
+- So, parseInt("08") → 8.
+- The second argument (10) explicitly tells parseInt to use base 10 (decimal).
+- "08" in base 10 is just 8.
+- So, parseInt("08", 10) → 8.
+
+## 📌 Question 33
+
+- !null → first ! converts null to a boolean (false) and then inverts it → true.
+- !!null → second ! inverts again → false.
+- So, !!null is a common trick to convert any value into its boolean equivalent.
+- Since null is falsy, result = false.
+- Boolean(...) explicitly converts a value into a boolean.
+- undefined is also a falsy value.
+- So, Boolean(undefined) → false.
+- Both null and undefined are falsy values in JavaScript.
+- !!value and Boolean(value) are just two different ways to convert something into its boolean equivalent.
+
+## 📌 Question 34
+
+- Same type → compare directly.
+- Boolean involved → convert boolean → number (true → 1, false → 0).
+- String & Number → convert string → number.
+- null & undefined → equal only to each other.
+- Objects → try to convert to primitive (via .valueOf() or .toString()).
+
+## 📌 Question 35
+
+- Setting .length to a smaller value cuts/truncates the array.
+- Setting .length to a bigger value adds empty slots (<empty>).
+- So here: [3,2,1] → length=1 → [3].
