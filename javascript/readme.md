@@ -280,3 +280,92 @@ Correct way to check: Number.isNaN(x).
 - Setting .length to a smaller value cuts/truncates the array.
 - Setting .length to a bigger value adds empty slots (<empty>).
 - So here: [3,2,1] → length=1 → [3].
+
+## 📌 Question 36
+
+- Start with → 1 + -"1" + "2"
+- -"1" → the string "1" is converted to number 1, then negated → becomes -1.
+- So now it’s → 1 + -1 + "2"
+- 1 + -1 → both numbers → 0
+- So now it’s → 0 + "2"
+- 0 + "2" → here, 0 is a number and "2" is a string. In JS, if one side is string, + does concatenation.
+- So → "0" + "2" → "02"
+
+## 📌 Question 37
+
+- a and b are two different arrays.
+- a === b would be false (because arrays are compared by reference, not content).
+- But here we’re not comparing arrays directly. We’re doing:
+- a.toString() → "1,2"
+- b.toString() → "1,2"
+- Now we’re comparing two strings:
+- "1,2" === "1,2" → true
+
+## 📌 Question 38
+
+- typeof 1 → "number" (Because 1 is a number, and typeof always returns a string.)
+- Now we do typeof "number" → "string" (Because "number" itself is a string.)
+
+## 📌 Question 39
+
+- An empty array [] is a truthy value in JavaScript.
+- Applying negation ![] makes it false.
+- The comparison becomes [] == false.
+- In loose equality, when an object is compared to a boolean, both sides are coerced to numbers.
+- false converts to 0.
+- [] converts to an empty string "", which then converts to 0.
+- The final comparison is 0 == 0.
+- This evaluates to true.
+
+## 📌 Question 40
+
+- In JavaScript, every value has a toString() method.
+- If the value (like an array, date, regex) defines its own toString(), it will use that.
+    - Example: [].toString() → "" (empty string, because arrays join elements with commas).
+    - Example: (new Date()).toString() → a readable date string.
+- A plain object {} does not define its own toString().
+- So when you call obj.toString(), it falls back to Object.prototype.toString().
+- That default method always returns "[object Type]", where Type is the internal tag for the value.
+    - For {}, the tag is Object → "[object Object]".
+    - For arrays, the internal tag is Array → "[object Array]", but since arrays override toString, you normally don’t see this unless you call Object.prototype.toString.call([]).
+- In short:
+    - Special objects (array, date, regex) have their own toString.
+    - Plain objects {} don’t — so they fall back to the default, which prints [object Object].
+- That’s why you see "[object Object]". It’s the default identity string for objects.
+
+## 📌 Question 41
+
+- In JavaScript (and most programming languages that follow IEEE-754 floating point rules), division by 0 doesn’t throw an error.
+- Instead:
+    - 1 / 0 → Infinity
+    - -1 / 0 → -Infinity
+- It’s just how the standard represents values that “grow beyond limits” in the positive or negative direction.
+
+## 📌 Question 42
+
+- When you use ==, JavaScript tries to convert both sides into the same type.
+- A string like "true" or "false" is not a special boolean — it’s just normal text. So when compared with a boolean, JavaScript converts the boolean into a number (true → 1, false → 0) and then tries to convert the string into a number as well.
+- "true" can’t be turned into a valid number, so it becomes NaN. "false" also can’t be turned into a valid number, so it also becomes NaN.
+- Now you’re really comparing NaN == 1 and NaN == 0. Both are false, because NaN is never equal to anything, not even itself.
+- That’s why both console.log("true" == true) and console.log("false" == false) give false.
+
+## 📌 Question 43
+
+- The + operator has two roles: addition (if both sides are numbers) or concatenation (if at least one side is a string).
+- Arrays, when converted to a primitive, first try toString(). For [1,2,3], that gives "1,2,3".
+- So now the expression becomes "1,2,3" + 1.
+- Since it’s string + number, JavaScript converts the number to a string and concatenates → "1,2,31".
+
+## 📌 Question 44
+
+- " " becomes 0 when coerced.
+- == allows type conversion, so " " == 0 → true.
+- === checks both type + value, so " " === 0 → false.
+
+## 📌 Question 45
+
+- a = [1,2,3] → original array.
+- b = a.slice() → makes a shallow copy of a.
+- b.push(4) → adds 4 only to b.
+- console.log(a) → [1,2,3] (unchanged).
+- console.log(b) → [1,2,3,4] (modified copy).
